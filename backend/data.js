@@ -26,7 +26,7 @@ const data = {
   products: [
     {
       name: 'Nike Slim Shirt',
-      category: 'Shirts',
+      category: 'Jeans',
       image: '/images/p1.jpg',
       price: 120,
       countInStock: 10,
