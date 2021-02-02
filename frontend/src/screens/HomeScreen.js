@@ -76,14 +76,6 @@ export default function HomeScreen() {
               <Product key={product._id} product={product}></Product>
               
             ))}
-            {products.map((product) => (
-              <Product key={product._id} product={product}></Product>
-              
-            ))}
-            {products.map((product) => (
-              <Product key={product._id} product={product}></Product>
-              
-            ))}
           </div>
         </>
       )}
