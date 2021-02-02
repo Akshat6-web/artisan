@@ -29,7 +29,7 @@ body {
 header {
   grid-area: header;
   background-color:#FF9933;
-  height: 250px;
+  
 }
 main {
   grid-area: main;
