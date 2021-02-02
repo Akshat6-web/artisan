@@ -141,7 +141,7 @@ export default function SearchScreen(props) {
             </ul>
           </div>
         </div>
-        <div className="col-3">
+        <div className="col-5">
           {loading ? (
             <LoadingBox></LoadingBox>
           ) : error ? (
