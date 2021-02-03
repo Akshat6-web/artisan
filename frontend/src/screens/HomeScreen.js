@@ -71,22 +71,7 @@ export default function HomeScreen() {
         </>
       )}
 
-<h2>Featured Products</h2>
-      {loading ? (
-        <LoadingBox></LoadingBox>
-      ) : error ? (
-        <MessageBox variant="danger">{error}</MessageBox>
-      ) : (
-        <>
-          {products.length === 0 && <MessageBox>No Product Found</MessageBox>}
-          <div className="row center">
-            {products.map((product) => (
-              <Product key={product._id} product={product}></Product>
-              
-            ))}
-          </div>
-        </>
-      )}
+
     </div>
   );
 }
