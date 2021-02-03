@@ -62,7 +62,7 @@ function App() {
               <i className="fa fa-bars"></i>
             </button>
             <Link className="brand" to="/">
-            Artisan
+           The Artisan
             </Link>
           </div>
           <div>
