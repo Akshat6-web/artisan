@@ -28,7 +28,7 @@ body {
 }
 header {
   grid-area: header;
-  background-color: #fff;
+  background-color: #000;
 }
 main {
   grid-area: main;
