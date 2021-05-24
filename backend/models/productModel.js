@@ -18,7 +18,7 @@ const productSchema = new mongoose.Schema(
     location: { type: String, required: true },
     description: { type: String, required: true },
     price: { type: Number, required: true },
-    ToatalParkingspots: { type: Number, required: true },
+    TotalParkingspots: { type: Number, required: true },
     rating: { type: Number, required: true },
     numReviews: { type: Number, required: true },
     reviews: [reviewSchema],

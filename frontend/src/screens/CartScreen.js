@@ -59,7 +59,7 @@ export default function CartScreen(props) {
                         )
                       }
                     >
-                      {[...Array(item.ToatalParkingspots).keys()].map((x) => (
+                      {[...Array(item.TotalParkingspots).keys()].map((x) => (
                         <option key={x + 1} value={x + 1}>
                           {x + 1}
                         </option>

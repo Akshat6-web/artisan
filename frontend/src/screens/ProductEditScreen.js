@@ -12,7 +12,7 @@ export default function ProductEditScreen(props) {
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
   const [location, setlocation] = useState("");
-  const [ToatalParkingspots, setToatalParkingspots] = useState("");
+  const [TotalParkingspots, setTotalParkingspots] = useState("");
   const [City, setCity] = useState("");
   const [description, setDescription] = useState("");
 
@@ -39,7 +39,7 @@ export default function ProductEditScreen(props) {
       setPrice(product.price);
       setImage(product.image);
       setlocation(product.location);
-      setToatalParkingspots(product.ToatalParkingspots);
+      setTotalParkingspots(product.TotalParkingspots);
       setCity(product.City);
       setDescription(product.description);
     }
@@ -55,7 +55,7 @@ export default function ProductEditScreen(props) {
         image,
         location,
         City,
-        ToatalParkingspots,
+        TotalParkingspots,
         description,
       })
     );
@@ -163,13 +163,13 @@ export default function ProductEditScreen(props) {
               ></input>
             </div>
             <div>
-              <label htmlFor="ToatalParkingspots">Count In Stock</label>
+              <label htmlFor="TotalParkingspots">Count In Stock</label>
               <input
-                id="ToatalParkingspots"
+                id="TotalParkingspots"
                 type="text"
-                placeholder="Enter ToatalParkingspots"
-                value={ToatalParkingspots}
-                onChange={(e) => setToatalParkingspots(e.target.value)}
+                placeholder="Enter TotalParkingspots"
+                value={TotalParkingspots}
+                onChange={(e) => setTotalParkingspots(e.target.value)}
               ></input>
             </div>
             <div>

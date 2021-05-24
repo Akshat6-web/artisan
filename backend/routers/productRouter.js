@@ -115,7 +115,7 @@ productRouter.post(
       price: 0,
       location: "sample location",
       City: "sample City",
-      ToatalParkingspots: 0,
+      TotalParkingspots: 0,
       rating: 0,
       numReviews: 0,
       description: "sample description",
@@ -137,7 +137,7 @@ productRouter.put(
       product.image = req.body.image;
       product.location = req.body.location;
       product.City = req.body.City;
-      product.ToatalParkingspots = req.body.ToatalParkingspots;
+      product.TotalParkingspots = req.body.TotalParkingspots;
       product.description = req.body.description;
       const updatedProduct = await product.save();
       res.send({ message: "Product Updated", product: updatedProduct });
