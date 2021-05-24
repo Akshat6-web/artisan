@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import Axios from "axios";
 import {
   PRODUCT_CREATE_FAIL,
   PRODUCT_CREATE_REQUEST,
@@ -15,46 +15,48 @@ import {
   PRODUCT_DELETE_REQUEST,
   PRODUCT_DELETE_FAIL,
   PRODUCT_DELETE_SUCCESS,
-  PRODUCT_CATEGORY_LIST_SUCCESS,
-  PRODUCT_CATEGORY_LIST_REQUEST,
-  PRODUCT_CATEGORY_LIST_FAIL,
+  PRODUCT_location_LIST_SUCCESS,
+  PRODUCT_location_LIST_REQUEST,
+  PRODUCT_location_LIST_FAIL,
   PRODUCT_REVIEW_CREATE_REQUEST,
   PRODUCT_REVIEW_CREATE_SUCCESS,
   PRODUCT_REVIEW_CREATE_FAIL,
-} from '../constants/productConstants';
+} from "../constants/productConstants";
 
-export const listProducts = ({
-  pageNumber = '',
-  seller = '',
-  name = '',
-  category = '',
-  order = '',
-  min = 0,
-  max = 0,
-  rating = 0,
-}) => async (dispatch) => {
-  dispatch({
-    type: PRODUCT_LIST_REQUEST,
-  });
-  try {
-    const { data } = await Axios.get(
-      `/api/products?pageNumber=${pageNumber}&seller=${seller}&name=${name}&category=${category}&min=${min}&max=${max}&rating=${rating}&order=${order}`
-    );
-    dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
-  } catch (error) {
-    dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
-  }
-};
+export const listProducts =
+  ({
+    pageNumber = "",
+    seller = "",
+    name = "",
+    location = "",
+    order = "",
+    min = 0,
+    max = 0,
+    rating = 0,
+  }) =>
+  async (dispatch) => {
+    dispatch({
+      type: PRODUCT_LIST_REQUEST,
+    });
+    try {
+      const { data } = await Axios.get(
+        `/api/products?pageNumber=${pageNumber}&seller=${seller}&name=${name}&location=${location}&min=${min}&max=${max}&rating=${rating}&order=${order}`
+      );
+      dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
+    }
+  };
 
 export const listProductCategories = () => async (dispatch) => {
   dispatch({
-    type: PRODUCT_CATEGORY_LIST_REQUEST,
+    type: PRODUCT_location_LIST_REQUEST,
   });
   try {
     const { data } = await Axios.get(`/api/products/categories`);
-    dispatch({ type: PRODUCT_CATEGORY_LIST_SUCCESS, payload: data });
+    dispatch({ type: PRODUCT_location_LIST_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({ type: PRODUCT_CATEGORY_LIST_FAIL, payload: error.message });
+    dispatch({ type: PRODUCT_location_LIST_FAIL, payload: error.message });
   }
 };
 
@@ -80,7 +82,7 @@ export const createProduct = () => async (dispatch, getState) => {
   } = getState();
   try {
     const { data } = await Axios.post(
-      '/api/products',
+      "/api/products",
       {},
       {
         headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -134,31 +136,29 @@ export const deleteProduct = (productId) => async (dispatch, getState) => {
     dispatch({ type: PRODUCT_DELETE_FAIL, payload: message });
   }
 };
-export const createReview = (productId, review) => async (
-  dispatch,
-  getState
-) => {
-  dispatch({ type: PRODUCT_REVIEW_CREATE_REQUEST });
-  const {
-    userSignin: { userInfo },
-  } = getState();
-  try {
-    const { data } = await Axios.post(
-      `/api/products/${productId}/reviews`,
-      review,
-      {
-        headers: { Authorization: `Bearer ${userInfo.token}` },
-      }
-    );
-    dispatch({
-      type: PRODUCT_REVIEW_CREATE_SUCCESS,
-      payload: data.review,
-    });
-  } catch (error) {
-    const message =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message;
-    dispatch({ type: PRODUCT_REVIEW_CREATE_FAIL, payload: message });
-  }
-};
+export const createReview =
+  (productId, review) => async (dispatch, getState) => {
+    dispatch({ type: PRODUCT_REVIEW_CREATE_REQUEST });
+    const {
+      userSignin: { userInfo },
+    } = getState();
+    try {
+      const { data } = await Axios.post(
+        `/api/products/${productId}/reviews`,
+        review,
+        {
+          headers: { Authorization: `Bearer ${userInfo.token}` },
+        }
+      );
+      dispatch({
+        type: PRODUCT_REVIEW_CREATE_SUCCESS,
+        payload: data.review,
+      });
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+      dispatch({ type: PRODUCT_REVIEW_CREATE_FAIL, payload: message });
+    }
+  };

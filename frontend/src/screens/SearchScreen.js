@@ -1,56 +1,56 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
-import { listProducts } from '../actions/productActions';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
-import Product from '../components/Product';
-import Rating from '../components/Rating';
-import { prices, ratings } from '../utils';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import { listProducts } from "../actions/productActions";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
+import Product from "../components/Product";
+import Rating from "../components/Rating";
+import { prices, ratings } from "../utils";
 
 export default function SearchScreen(props) {
   const {
-    name = 'all',
-    category = 'all',
+    name = "all",
+    location = "all",
     min = 0,
     max = 0,
     rating = 0,
-    order = 'newest',
+    order = "newest",
     pageNumber = 1,
   } = useParams();
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
 
-  const productCategoryList = useSelector((state) => state.productCategoryList);
+  const productlocationList = useSelector((state) => state.productlocationList);
   const {
     loading: loadingCategories,
     error: errorCategories,
     categories,
-  } = productCategoryList;
+  } = productlocationList;
   useEffect(() => {
     dispatch(
       listProducts({
         pageNumber,
-        name: name !== 'all' ? name : '',
-        category: category !== 'all' ? category : '',
+        name: name !== "all" ? name : "",
+        location: location !== "all" ? location : "",
         min,
         max,
         rating,
         order,
       })
     );
-  }, [category, dispatch, max, min, name, order, rating, pageNumber]);
+  }, [location, dispatch, max, min, name, order, rating, pageNumber]);
 
   const getFilterUrl = (filter) => {
     const filterPage = filter.page || pageNumber;
-    const filterCategory = filter.category || category;
+    const filterlocation = filter.location || location;
     const filterName = filter.name || name;
     const filterRating = filter.rating || rating;
     const sortOrder = filter.order || order;
     const filterMin = filter.min ? filter.min : filter.min === 0 ? 0 : min;
     const filterMax = filter.max ? filter.max : filter.max === 0 ? 0 : max;
-    return `/search/category/${filterCategory}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}/pageNumber/${filterPage}`;
+    return `/search/location/${filterlocation}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}/pageNumber/${filterPage}`;
   };
   return (
     <div>
@@ -63,7 +63,7 @@ export default function SearchScreen(props) {
           <div>{products.length} Results</div>
         )}
         <div>
-          Sort by{' '}
+          Sort by{" "}
           <select
             value={order}
             onChange={(e) => {
@@ -89,8 +89,8 @@ export default function SearchScreen(props) {
               <ul>
                 <li>
                   <Link
-                    className={'all' === category ? 'active' : ''}
-                    to={getFilterUrl({ category: 'all' })}
+                    className={"all" === location ? "active" : ""}
+                    to={getFilterUrl({ location: "all" })}
                   >
                     Any
                   </Link>
@@ -98,8 +98,8 @@ export default function SearchScreen(props) {
                 {categories.map((c) => (
                   <li key={c}>
                     <Link
-                      className={c === category ? 'active' : ''}
-                      to={getFilterUrl({ category: c })}
+                      className={c === location ? "active" : ""}
+                      to={getFilterUrl({ location: c })}
                     >
                       {c}
                     </Link>
@@ -116,7 +116,7 @@ export default function SearchScreen(props) {
                   <Link
                     to={getFilterUrl({ min: p.min, max: p.max })}
                     className={
-                      `${p.min}-${p.max}` === `${min}-${max}` ? 'active' : ''
+                      `${p.min}-${p.max}` === `${min}-${max}` ? "active" : ""
                     }
                   >
                     {p.name}
@@ -132,9 +132,9 @@ export default function SearchScreen(props) {
                 <li key={r.name}>
                   <Link
                     to={getFilterUrl({ rating: r.rating })}
-                    className={`${r.rating}` === `${rating}` ? 'active' : ''}
+                    className={`${r.rating}` === `${rating}` ? "active" : ""}
                   >
-                    <Rating caption={' & up'} rating={r.rating}></Rating>
+                    <Rating caption={" & up"} rating={r.rating}></Rating>
                   </Link>
                 </li>
               ))}
@@ -159,7 +159,7 @@ export default function SearchScreen(props) {
               <div className="row center pagination">
                 {[...Array(pages).keys()].map((x) => (
                   <Link
-                    className={x + 1 === page ? 'active' : ''}
+                    className={x + 1 === page ? "active" : ""}
                     key={x + 1}
                     to={getFilterUrl({ page: x + 1 })}
                   >
