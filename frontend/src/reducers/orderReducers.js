@@ -27,7 +27,7 @@ import {
   ORDER_SUMMARY_REQUEST,
   ORDER_SUMMARY_SUCCESS,
   ORDER_SUMMARY_FAIL,
-} from "../constants/orderConstants";
+} from '../constants/orderConstants';
 
 export const orderCreateReducer = (state = {}, action) => {
   switch (action.type) {

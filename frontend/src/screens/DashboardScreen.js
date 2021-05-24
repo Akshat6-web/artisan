@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Chart from "react-google-charts";
-import { summaryOrder } from "../actions/orderActions";
-import LoadingBox from "../components/LoadingBox";
-import MessageBox from "../components/MessageBox";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Chart from 'react-google-charts';
+import { summaryOrder } from '../actions/orderActions';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
 
 export default function DashboardScreen() {
   const orderSummary = useSelector((state) => state.orderSummary);
@@ -68,7 +68,7 @@ export default function DashboardScreen() {
                   chartType="AreaChart"
                   loader={<div>Loading Chart</div>}
                   data={[
-                    ["Date", "Sales"],
+                    ['Date', 'Sales'],
                     ...summary.dailyOrders.map((x) => [x._id, x.sales]),
                   ]}
                 ></Chart>
@@ -86,7 +86,7 @@ export default function DashboardScreen() {
                 chartType="PieChart"
                 loader={<div>Loading Chart</div>}
                 data={[
-                  ["Category", "Products"],
+                  ['Category', 'Products'],
                   ...summary.productCategories.map((x) => [x._id, x.count]),
                 ]}
               />
