@@ -93,8 +93,8 @@ export default function ProductListScreen(props) {
                 <th>ID</th>
                 <th>NAME</th>
                 <th>PRICE</th>
-                <th>category</th>
-                <th>brand</th>
+                <th>CATEGORY</th>
+                <th>BRAND</th>
                 <th>ACTIONS</th>
               </tr>
             </thead>

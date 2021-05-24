@@ -11,9 +11,9 @@ export default function ProductEditScreen(props) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
-  const [category, setcategory] = useState("");
-  const [countInStock, setcountInStock] = useState("");
-  const [brand, setbrand] = useState("");
+  const [category, setCategory] = useState("");
+  const [countInStock, setCountInStock] = useState("");
+  const [brand, setBrand] = useState("");
   const [description, setDescription] = useState("");
 
   const productDetails = useSelector((state) => state.productDetails);
@@ -38,9 +38,9 @@ export default function ProductEditScreen(props) {
       setName(product.name);
       setPrice(product.price);
       setImage(product.image);
-      setcategory(product.category);
-      setcountInStock(product.countInStock);
-      setbrand(product.brand);
+      setCategory(product.category);
+      setCountInStock(product.countInStock);
+      setBrand(product.brand);
       setDescription(product.description);
     }
   }, [product, dispatch, productId, successUpdate, props.history]);
@@ -143,23 +143,23 @@ export default function ProductEditScreen(props) {
               )}
             </div>
             <div>
-              <label htmlFor="category">category</label>
+              <label htmlFor="category">Category</label>
               <input
                 id="category"
                 type="text"
                 placeholder="Enter category"
                 value={category}
-                onChange={(e) => setcategory(e.target.value)}
+                onChange={(e) => setCategory(e.target.value)}
               ></input>
             </div>
             <div>
-              <label htmlFor="brand">brand</label>
+              <label htmlFor="brand">Brand</label>
               <input
                 id="brand"
                 type="text"
                 placeholder="Enter brand"
                 value={brand}
-                onChange={(e) => setbrand(e.target.value)}
+                onChange={(e) => setBrand(e.target.value)}
               ></input>
             </div>
             <div>
@@ -169,7 +169,7 @@ export default function ProductEditScreen(props) {
                 type="text"
                 placeholder="Enter countInStock"
                 value={countInStock}
-                onChange={(e) => setcountInStock(e.target.value)}
+                onChange={(e) => setCountInStock(e.target.value)}
               ></input>
             </div>
             <div>

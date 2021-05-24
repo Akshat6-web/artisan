@@ -15,9 +15,9 @@ import {
   PRODUCT_DELETE_REQUEST,
   PRODUCT_DELETE_FAIL,
   PRODUCT_DELETE_SUCCESS,
-  PRODUCT_category_LIST_SUCCESS,
-  PRODUCT_category_LIST_REQUEST,
-  PRODUCT_category_LIST_FAIL,
+  PRODUCT_CATEGORY_LIST_SUCCESS,
+  PRODUCT_CATEGORY_LIST_REQUEST,
+  PRODUCT_CATEGORY_LIST_FAIL,
   PRODUCT_REVIEW_CREATE_REQUEST,
   PRODUCT_REVIEW_CREATE_SUCCESS,
   PRODUCT_REVIEW_CREATE_FAIL,
@@ -50,13 +50,13 @@ export const listProducts =
 
 export const listProductCategories = () => async (dispatch) => {
   dispatch({
-    type: PRODUCT_category_LIST_REQUEST,
+    type: PRODUCT_CATEGORY_LIST_REQUEST,
   });
   try {
     const { data } = await Axios.get(`/api/products/categories`);
-    dispatch({ type: PRODUCT_category_LIST_SUCCESS, payload: data });
+    dispatch({ type: PRODUCT_CATEGORY_LIST_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({ type: PRODUCT_category_LIST_FAIL, payload: error.message });
+    dispatch({ type: PRODUCT_CATEGORY_LIST_FAIL, payload: error.message });
   }
 };
 
