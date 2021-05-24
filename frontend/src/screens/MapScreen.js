@@ -1,22 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 import {
   LoadScript,
   GoogleMap,
   StandaloneSearchBox,
   Marker,
-} from '@react-google-maps/api';
-import LoadingBox from '../components/LoadingBox';
-import Axios from 'axios';
-import { USER_ADDRESS_MAP_CONFIRM } from '../constants/userConstants';
-import { useDispatch } from 'react-redux';
+} from "@react-google-maps/api";
+import LoadingBox from "../components/LoadingBox";
+import Axios from "axios";
+import { USER_ADDRESS_MAP_CONFIRM } from "../constants/userConstants";
+import { useDispatch } from "react-redux";
 
-const libs = ['places'];
-const defaultLocation = { lat: 45.516, lng: -73.56 };
+const libs = ["places"];
+const defaultcategory = { lat: 45.516, lng: -73.56 };
 
 export default function MapScreen(props) {
-  const [googleApiKey, setGoogleApiKey] = useState('');
-  const [center, setCenter] = useState(defaultLocation);
-  const [location, setLocation] = useState(center);
+  const [googleApiKey, setGoogleApiKey] = useState("");
+  const [center, setCenter] = useState(defaultcategory);
+  const [category, setcategory] = useState(center);
 
   const mapRef = useRef(null);
   const placeRef = useRef(null);
@@ -24,9 +24,9 @@ export default function MapScreen(props) {
 
   useEffect(() => {
     const fetch = async () => {
-      const { data } = await Axios('/api/config/google');
+      const { data } = await Axios("/api/config/google");
       setGoogleApiKey(data);
-      getUserCurrentLocation();
+      getUserCurrentcategory();
     };
     fetch();
   }, []);
@@ -42,15 +42,15 @@ export default function MapScreen(props) {
     placeRef.current = place;
   };
   const onIdle = () => {
-    setLocation({
+    setcategory({
       lat: mapRef.current.center.lat(),
       lng: mapRef.current.center.lng(),
     });
   };
   const onPlacesChanged = () => {
-    const place = placeRef.current.getPlaces()[0].geometry.location;
+    const place = placeRef.current.getPlaces()[0].geometry.category;
     setCenter({ lat: place.lat(), lng: place.lng() });
-    setLocation({ lat: place.lat(), lng: place.lng() });
+    setcategory({ lat: place.lat(), lng: place.lng() });
   };
   const dispatch = useDispatch();
   const onConfirm = () => {
@@ -60,31 +60,31 @@ export default function MapScreen(props) {
       dispatch({
         type: USER_ADDRESS_MAP_CONFIRM,
         payload: {
-          lat: location.lat,
-          lng: location.lng,
+          lat: category.lat,
+          lng: category.lng,
           address: places[0].formatted_address,
           name: places[0].name,
           vicinity: places[0].vicinity,
           googleAddressId: places[0].id,
         },
       });
-      alert('location selected successfully.');
-      props.history.push('/shipping');
+      alert("category selected successfully.");
+      props.history.push("/shipping");
     } else {
-      alert('Please enter your address');
+      alert("Please enter your address");
     }
   };
 
-  const getUserCurrentLocation = () => {
-    if (!navigator.geolocation) {
-      alert('Geolocation os not supported by this browser');
+  const getUserCurrentcategory = () => {
+    if (!navigator.geocategory) {
+      alert("Geocategory os not supported by this browser");
     } else {
-      navigator.geolocation.getCurrentPosition((position) => {
+      navigator.geocategory.getCurrentPosition((position) => {
         setCenter({
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         });
-        setLocation({
+        setcategory({
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         });
@@ -97,7 +97,7 @@ export default function MapScreen(props) {
       <LoadScript libraries={libs} googleMapsApiKey={googleApiKey}>
         <GoogleMap
           id="smaple-map"
-          mapContainerStyle={{ height: '100%', width: '100%' }}
+          mapContainerStyle={{ height: "100%", width: "100%" }}
           center={center}
           zoom={15}
           onLoad={onLoad}
@@ -114,7 +114,7 @@ export default function MapScreen(props) {
               </button>
             </div>
           </StandaloneSearchBox>
-          <Marker position={location} onLoad={onMarkerLoad}></Marker>
+          <Marker position={category} onLoad={onMarkerLoad}></Marker>
         </GoogleMap>
       </LoadScript>
     </div>

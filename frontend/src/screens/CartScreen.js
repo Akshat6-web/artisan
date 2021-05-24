@@ -6,8 +6,8 @@ import MessageBox from "../components/MessageBox";
 
 export default function CartScreen(props) {
   const productId = props.match.params.id;
-  const qty = props.location.search
-    ? Number(props.location.search.split("=")[1])
+  const qty = props.category.search
+    ? Number(props.category.search.split("=")[1])
     : 1;
   const cart = useSelector((state) => state.cart);
   const { cartItems, error } = cart;
@@ -59,7 +59,7 @@ export default function CartScreen(props) {
                         )
                       }
                     >
-                      {[...Array(item.TotalParkingspots).keys()].map((x) => (
+                      {[...Array(item.countInStock).keys()].map((x) => (
                         <option key={x + 1} value={x + 1}>
                           {x + 1}
                         </option>

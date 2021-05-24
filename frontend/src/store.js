@@ -11,7 +11,7 @@ import {
   orderPayReducer,
 } from "./reducers/orderReducers";
 import {
-  productlocationListReducer,
+  productcategoryListReducer,
   productCreateReducer,
   productDeleteReducer,
   productDetailsReducer,
@@ -69,7 +69,7 @@ const reducer = combineReducers({
   userList: userListReducer,
   userDelete: userDeleteReducer,
   userTopSellersList: userTopSellerListReducer,
-  productlocationList: productlocationListReducer,
+  productcategoryList: productcategoryListReducer,
   productReviewCreate: productReviewCreateReducer,
   userAddressMap: userAddressMapReducer,
 });

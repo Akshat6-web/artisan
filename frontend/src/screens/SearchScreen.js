@@ -11,7 +11,7 @@ import { prices, ratings } from "../utils";
 export default function SearchScreen(props) {
   const {
     name = "all",
-    location = "all",
+    category = "all",
     min = 0,
     max = 0,
     rating = 0,
@@ -22,35 +22,35 @@ export default function SearchScreen(props) {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
 
-  const productlocationList = useSelector((state) => state.productlocationList);
+  const productcategoryList = useSelector((state) => state.productcategoryList);
   const {
     loading: loadingCategories,
     error: errorCategories,
     categories,
-  } = productlocationList;
+  } = productcategoryList;
   useEffect(() => {
     dispatch(
       listProducts({
         pageNumber,
         name: name !== "all" ? name : "",
-        location: location !== "all" ? location : "",
+        category: category !== "all" ? category : "",
         min,
         max,
         rating,
         order,
       })
     );
-  }, [location, dispatch, max, min, name, order, rating, pageNumber]);
+  }, [category, dispatch, max, min, name, order, rating, pageNumber]);
 
   const getFilterUrl = (filter) => {
     const filterPage = filter.page || pageNumber;
-    const filterlocation = filter.location || location;
+    const filtercategory = filter.category || category;
     const filterName = filter.name || name;
     const filterRating = filter.rating || rating;
     const sortOrder = filter.order || order;
     const filterMin = filter.min ? filter.min : filter.min === 0 ? 0 : min;
     const filterMax = filter.max ? filter.max : filter.max === 0 ? 0 : max;
-    return `/search/location/${filterlocation}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}/pageNumber/${filterPage}`;
+    return `/search/category/${filtercategory}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}/pageNumber/${filterPage}`;
   };
   return (
     <div>
@@ -89,8 +89,8 @@ export default function SearchScreen(props) {
               <ul>
                 <li>
                   <Link
-                    className={"all" === location ? "active" : ""}
-                    to={getFilterUrl({ location: "all" })}
+                    className={"all" === category ? "active" : ""}
+                    to={getFilterUrl({ category: "all" })}
                   >
                     Any
                   </Link>
@@ -98,8 +98,8 @@ export default function SearchScreen(props) {
                 {categories.map((c) => (
                   <li key={c}>
                     <Link
-                      className={c === location ? "active" : ""}
-                      to={getFilterUrl({ location: c })}
+                      className={c === category ? "active" : ""}
+                      to={getFilterUrl({ category: c })}
                     >
                       {c}
                     </Link>

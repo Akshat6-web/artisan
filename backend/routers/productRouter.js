@@ -13,7 +13,7 @@ productRouter.get(
     const pageSize = 5;
     const page = Number(req.query.pageNumber) || 1;
     const name = req.query.name || "";
-    const location = req.query.location || "";
+    const category = req.query.category || "";
     const seller = req.query.seller || "";
     const order = req.query.order || "";
     const min =
@@ -27,7 +27,7 @@ productRouter.get(
 
     const nameFilter = name ? { name: { $regex: name, $options: "i" } } : {};
     const sellerFilter = seller ? { seller } : {};
-    const locationFilter = location ? { location } : {};
+    const categoryFilter = category ? { category } : {};
     const priceFilter = min && max ? { price: { $gte: min, $lte: max } } : {};
     const ratingFilter = rating ? { rating: { $gte: rating } } : {};
     const sortOrder =
@@ -41,14 +41,14 @@ productRouter.get(
     const count = await Product.count({
       ...sellerFilter,
       ...nameFilter,
-      ...locationFilter,
+      ...categoryFilter,
       ...priceFilter,
       ...ratingFilter,
     });
     const products = await Product.find({
       ...sellerFilter,
       ...nameFilter,
-      ...locationFilter,
+      ...categoryFilter,
       ...priceFilter,
       ...ratingFilter,
     })
@@ -63,7 +63,7 @@ productRouter.get(
 productRouter.get(
   "/categories",
   expressAsyncHandler(async (req, res) => {
-    const categories = await Product.find().distinct("location");
+    const categories = await Product.find().distinct("category");
     res.send(categories);
   })
 );
@@ -113,9 +113,9 @@ productRouter.post(
       seller: req.user._id,
       image: "/images/p1.jpg",
       price: 0,
-      location: "sample location",
-      City: "sample City",
-      TotalParkingspots: 0,
+      category: "sample category",
+      brand: "sample brand",
+      countInStock: 0,
       rating: 0,
       numReviews: 0,
       description: "sample description",
@@ -135,9 +135,9 @@ productRouter.put(
       product.name = req.body.name;
       product.price = req.body.price;
       product.image = req.body.image;
-      product.location = req.body.location;
-      product.City = req.body.City;
-      product.TotalParkingspots = req.body.TotalParkingspots;
+      product.category = req.body.category;
+      product.brand = req.body.brand;
+      product.countInStock = req.body.countInStock;
       product.description = req.body.description;
       const updatedProduct = await product.save();
       res.send({ message: "Product Updated", product: updatedProduct });

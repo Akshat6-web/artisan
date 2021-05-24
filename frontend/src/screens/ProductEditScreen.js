@@ -11,9 +11,9 @@ export default function ProductEditScreen(props) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
-  const [location, setlocation] = useState("");
-  const [TotalParkingspots, setTotalParkingspots] = useState("");
-  const [City, setCity] = useState("");
+  const [category, setcategory] = useState("");
+  const [countInStock, setcountInStock] = useState("");
+  const [brand, setbrand] = useState("");
   const [description, setDescription] = useState("");
 
   const productDetails = useSelector((state) => state.productDetails);
@@ -38,9 +38,9 @@ export default function ProductEditScreen(props) {
       setName(product.name);
       setPrice(product.price);
       setImage(product.image);
-      setlocation(product.location);
-      setTotalParkingspots(product.TotalParkingspots);
-      setCity(product.City);
+      setcategory(product.category);
+      setcountInStock(product.countInStock);
+      setbrand(product.brand);
       setDescription(product.description);
     }
   }, [product, dispatch, productId, successUpdate, props.history]);
@@ -53,9 +53,9 @@ export default function ProductEditScreen(props) {
         name,
         price,
         image,
-        location,
-        City,
-        TotalParkingspots,
+        category,
+        brand,
+        countInStock,
         description,
       })
     );
@@ -143,33 +143,33 @@ export default function ProductEditScreen(props) {
               )}
             </div>
             <div>
-              <label htmlFor="location">location</label>
+              <label htmlFor="category">category</label>
               <input
-                id="location"
+                id="category"
                 type="text"
-                placeholder="Enter location"
-                value={location}
-                onChange={(e) => setlocation(e.target.value)}
+                placeholder="Enter category"
+                value={category}
+                onChange={(e) => setcategory(e.target.value)}
               ></input>
             </div>
             <div>
-              <label htmlFor="City">City</label>
+              <label htmlFor="brand">brand</label>
               <input
-                id="City"
+                id="brand"
                 type="text"
-                placeholder="Enter City"
-                value={City}
-                onChange={(e) => setCity(e.target.value)}
+                placeholder="Enter brand"
+                value={brand}
+                onChange={(e) => setbrand(e.target.value)}
               ></input>
             </div>
             <div>
-              <label htmlFor="TotalParkingspots">Count In Stock</label>
+              <label htmlFor="countInStock">Count In Stock</label>
               <input
-                id="TotalParkingspots"
+                id="countInStock"
                 type="text"
-                placeholder="Enter TotalParkingspots"
-                value={TotalParkingspots}
-                onChange={(e) => setTotalParkingspots(e.target.value)}
+                placeholder="Enter countInStock"
+                value={countInStock}
+                onChange={(e) => setcountInStock(e.target.value)}
               ></input>
             </div>
             <div>

@@ -40,12 +40,12 @@ function App() {
     dispatch(signout());
   };
 
-  const productlocationList = useSelector((state) => state.productlocationList);
+  const productcategoryList = useSelector((state) => state.productcategoryList);
   const {
     loading: loadingCategories,
     error: errorCategories,
     categories,
-  } = productlocationList;
+  } = productcategoryList;
   useEffect(() => {
     dispatch(listProductCategories());
   }, [dispatch]);
@@ -61,7 +61,7 @@ function App() {
             >
               <i className="fa fa-bars"></i>
             </button>
-            <Link className="City" to="/">
+            <Link className="brand" to="/">
               Automated CarParking
             </Link>
           </div>
@@ -159,7 +159,7 @@ function App() {
               categories.map((c) => (
                 <li key={c}>
                   <Link
-                    to={`/search/location/${c}`}
+                    to={`/search/category/${c}`}
                     onClick={() => setSidebarIsOpen(false)}
                   >
                     {c}
@@ -191,17 +191,17 @@ function App() {
             exact
           ></Route>
           <Route
-            path="/search/location/:location"
+            path="/search/category/:category"
             component={SearchScreen}
             exact
           ></Route>
           <Route
-            path="/search/location/:location/name/:name"
+            path="/search/category/:category/name/:name"
             component={SearchScreen}
             exact
           ></Route>
           <Route
-            path="/search/location/:location/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber"
+            path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber"
             component={SearchScreen}
             exact
           ></Route>
