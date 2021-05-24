@@ -1,33 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
-import { signout } from './actions/userActions';
-import AdminRoute from './components/AdminRoute';
-import PrivateRoute from './components/PrivateRoute';
-import CartScreen from './screens/CartScreen';
-import HomeScreen from './screens/HomeScreen';
-import OrderHistoryScreen from './screens/OrderHistoryScreen';
-import OrderScreen from './screens/OrderScreen';
-import PaymentMethodScreen from './screens/PaymentMethodScreen';
-import PlaceOrderScreen from './screens/PlaceOrderScreen';
-import ProductListScreen from './screens/ProductListScreen';
-import ProductScreen from './screens/ProductScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import RegisterScreen from './screens/RegisterScreen';
-import ShippingAddressScreen from './screens/ShippingAddressScreen';
-import SigninScreen from './screens/SigninScreen';
-import ProductEditScreen from './screens/ProductEditScreen';
-import OrderListScreen from './screens/OrderListScreen';
-import UserListScreen from './screens/UserListScreen';
-import UserEditScreen from './screens/UserEditScreen';
-import SellerRoute from './components/SellerRoute';
-import SellerScreen from './screens/SellerScreen';
-import SearchBox from './components/SearchBox';
-import SearchScreen from './screens/SearchScreen';
-import { listProductCategories } from './actions/productActions';
-import LoadingBox from './components/LoadingBox';
-import MessageBox from './components/MessageBox';
-import MapScreen from './screens/MapScreen';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { BrowserRouter, Link, Route } from "react-router-dom";
+import { signout } from "./actions/userActions";
+import AdminRoute from "./components/AdminRoute";
+import PrivateRoute from "./components/PrivateRoute";
+import CartScreen from "./screens/CartScreen";
+import HomeScreen from "./screens/HomeScreen";
+import OrderHistoryScreen from "./screens/OrderHistoryScreen";
+import OrderScreen from "./screens/OrderScreen";
+import PaymentMethodScreen from "./screens/PaymentMethodScreen";
+import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+import ProductListScreen from "./screens/ProductListScreen";
+import ProductScreen from "./screens/ProductScreen";
+import ProfileScreen from "./screens/ProfileScreen";
+import RegisterScreen from "./screens/RegisterScreen";
+import ShippingAddressScreen from "./screens/ShippingAddressScreen";
+import SigninScreen from "./screens/SigninScreen";
+import ProductEditScreen from "./screens/ProductEditScreen";
+import OrderListScreen from "./screens/OrderListScreen";
+import UserListScreen from "./screens/UserListScreen";
+import UserEditScreen from "./screens/UserEditScreen";
+import SellerRoute from "./components/SellerRoute";
+import SellerScreen from "./screens/SellerScreen";
+import SearchBox from "./components/SearchBox";
+import SearchScreen from "./screens/SearchScreen";
+import { listProductCategories } from "./actions/productActions";
+import LoadingBox from "./components/LoadingBox";
+import MessageBox from "./components/MessageBox";
+import MapScreen from "./screens/MapScreen";
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -62,7 +62,7 @@ function App() {
               <i className="fa fa-bars"></i>
             </button>
             <Link className="brand" to="/">
-           The Artisan
+              Automated CarParking
             </Link>
           </div>
           <div>
@@ -74,7 +74,7 @@ function App() {
           </div>
           <div>
             <Link to="/cart">
-              Cart
+              Active Spots
               {cartItems.length > 0 && (
                 <span className="badge">{cartItems.length}</span>
               )}
@@ -82,14 +82,14 @@ function App() {
             {userInfo ? (
               <div className="dropdown">
                 <Link to="#">
-                  {userInfo.name} <i className="fa fa-caret-down"></i>{' '}
+                  {userInfo.name} <i className="fa fa-caret-down"></i>{" "}
                 </Link>
                 <ul className="dropdown-content">
                   <li>
                     <Link to="/profile">User Profile</Link>
                   </li>
                   <li>
-                    <Link to="/orderhistory">Order History</Link>
+                    <Link to="/orderhistory">Parking History</Link>
                   </li>
                   <li>
                     <Link to="#signout" onClick={signoutHandler}>
@@ -104,14 +104,14 @@ function App() {
             {userInfo && userInfo.isSeller && (
               <div className="dropdown">
                 <Link to="#admin">
-                  Seller <i className="fa fa-caret-down"></i>
+                  Spot provider <i className="fa fa-caret-down"></i>
                 </Link>
                 <ul className="dropdown-content">
                   <li>
-                    <Link to="/productlist/seller">Products</Link>
+                    <Link to="/productlist/seller">All spots</Link>
                   </li>
                   <li>
-                    <Link to="/orderlist/seller">Orders</Link>
+                    <Link to="/orderlist/seller">Occupied spots</Link>
                   </li>
                 </ul>
               </div>
@@ -126,10 +126,10 @@ function App() {
                     <Link to="/dashboard">Dashboard</Link>
                   </li>
                   <li>
-                    <Link to="/productlist">Products</Link>
+                    <Link to="/productlist">All spots</Link>
                   </li>
                   <li>
-                    <Link to="/orderlist">Orders</Link>
+                    <Link to="/orderlist">Occupied Spots</Link>
                   </li>
                   <li>
                     <Link to="/userlist">Users</Link>
@@ -139,10 +139,10 @@ function App() {
             )}
           </div>
         </header>
-        <aside className={sidebarIsOpen ? 'open' : ''}>
+        <aside className={sidebarIsOpen ? "open" : ""}>
           <ul className="categories">
             <li>
-              <strong>Categories</strong>
+              <strong>Cities</strong>
               <button
                 onClick={() => setSidebarIsOpen(false)}
                 className="close-sidebar"
